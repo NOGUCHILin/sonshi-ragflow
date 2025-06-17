@@ -256,14 +256,18 @@ async def list_documents():
     }
 
 if __name__ == "__main__":
-    # Railwayのポート設定
+    # Railwayのポート設定（必須）
     port = int(os.environ.get("PORT", 8000))
-    print(f"🚀 Starting Sunzi RAG Server on port {port}")
+    print(f"🚀 Starting Sunzi RAG Server on host 0.0.0.0 port {port}")
     print(f"📚 Loaded {len(kb.documents)} documents")
+    print(f"🌍 Environment: {os.environ.get('RAILWAY_ENVIRONMENT', 'local')}")
     
+    # Railway対応の設定
     uvicorn.run(
-        app,
-        host="0.0.0.0",
-        port=port,
-        access_log=True
+        "simple-rag-server:app",  # アプリケーション指定を明示
+        host="0.0.0.0",          # 必須：すべてのインターフェースにバインド
+        port=port,               # Railway提供のポート
+        log_level="info",        # ログレベル設定
+        access_log=True,         # アクセスログ有効
+        reload=False             # 本番環境ではリロード無効
     )

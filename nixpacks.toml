@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["python310", "pip"]
+
+[phases.install]
+cmds = ["pip install --no-cache-dir -r requirements-simple.txt"]
+
+[phases.build]
+cmds = ["echo 'Build complete'"]
+
+[start]
+cmd = "python simple-rag-server.py"

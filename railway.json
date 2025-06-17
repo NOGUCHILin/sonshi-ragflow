@@ -1,18 +1,10 @@
 {
+  "$schema": "https://railway.com/railway.schema.json",
   "build": {
     "builder": "dockerfile",
     "dockerfilePath": "Dockerfile.simple"
   },
   "deploy": {
-    "healthcheckPath": "/health",
-    "healthcheckTimeout": 60,
-    "restartPolicyType": "on-failure"
-  },
-  "environments": {
-    "production": {
-      "variables": {
-        "PYTHONPATH": "/app"
-      }
-    }
+    "healthcheckPath": "/health"
   }
 }

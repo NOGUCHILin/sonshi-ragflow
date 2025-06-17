@@ -1,15 +1,21 @@
 {
-  "deploy": {
-    "startCommand": "docker-compose up",
-    "healthcheckPath": "/",
-    "healthcheckTimeout": 300,
-    "restartPolicyType": "always"
-  },
   "build": {
-    "builder": "dockerfile"
+    "builder": "dockerfile",
+    "dockerfilePath": "Dockerfile.railway"
   },
-  "variables": {
-    "NODE_ENV": "production",
-    "TIMEZONE": "Asia/Tokyo"
+  "deploy": {
+    "healthcheckPath": "/api/healthz",
+    "healthcheckTimeout": 300,
+    "restartPolicyType": "on-failure"
+  },
+  "environments": {
+    "production": {
+      "variables": {
+        "NODE_ENV": "production",
+        "TIMEZONE": "Asia/Tokyo",
+        "PYTHONPATH": "/ragflow",
+        "RAGFLOW_ENV": "railway"
+      }
+    }
   }
 }

@@ -1,0 +1,15 @@
+{
+  "deploy": {
+    "startCommand": "docker-compose up",
+    "healthcheckPath": "/",
+    "healthcheckTimeout": 300,
+    "restartPolicyType": "always"
+  },
+  "build": {
+    "builder": "dockerfile"
+  },
+  "variables": {
+    "NODE_ENV": "production",
+    "TIMEZONE": "Asia/Tokyo"
+  }
+}

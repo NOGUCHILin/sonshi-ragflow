@@ -1,20 +1,17 @@
 {
   "build": {
     "builder": "dockerfile",
-    "dockerfilePath": "Dockerfile.railway"
+    "dockerfilePath": "Dockerfile.simple"
   },
   "deploy": {
-    "healthcheckPath": "/api/healthz",
-    "healthcheckTimeout": 300,
+    "healthcheckPath": "/health",
+    "healthcheckTimeout": 60,
     "restartPolicyType": "on-failure"
   },
   "environments": {
     "production": {
       "variables": {
-        "NODE_ENV": "production",
-        "TIMEZONE": "Asia/Tokyo",
-        "PYTHONPATH": "/ragflow",
-        "RAGFLOW_ENV": "railway"
+        "PYTHONPATH": "/app"
       }
     }
   }
